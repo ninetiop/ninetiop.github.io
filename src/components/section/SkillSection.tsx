@@ -78,7 +78,7 @@ const SkillSection: React.FC = () => {
             {category.skills.map((skill, skillIndex) => (
               <Card
                 key={skillIndex}
-                className="border border-gray-600 rounded-lg bg-gray-900 p-4 flex flex-col items-center justify-center h-48" // Pas de hover, ni transition
+                className="border border-gray-600 rounded-lg bg-gray-900 p-4 flex flex-col items-center justify-center h-48"
               >
                 <CardBody className="p-2 flex items-center justify-center flex-grow">
                   <Image

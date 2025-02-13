@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 
-// Définir les sections de l'application
+
 const sectionIds: string[] = ["whoami", "skills", "experiences", "contact"];
 
 const ArrowScroll: React.FC = () => {
@@ -11,17 +11,17 @@ const ArrowScroll: React.FC = () => {
   const [navbarHeight, setNavbarHeight] = useState<number>(100);
 
   useEffect(() => {
-    // Calculer la hauteur de la navbar (ou d'un autre élément fixe)
+
     const navbar = document.getElementById("navbar");
     if (navbar) {
-      setNavbarHeight(navbar.offsetHeight);  // Récupérer la hauteur de la navbar
+      setNavbarHeight(navbar.offsetHeight); 
     }
 
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Déterminer la direction du scroll
+      
       setDirection(currentScrollY > lastScrollY ? "down" : "up");
       lastScrollY = currentScrollY;
     };

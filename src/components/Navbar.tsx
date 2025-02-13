@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-scroll"; 
 import HomeIcon from '@mui/icons-material/Home';
 import CodeIcon from '@mui/icons-material/Code';
-import BuildIcon from '@mui/icons-material/Build';
 import MailIcon from '@mui/icons-material/Mail';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 
@@ -33,7 +32,6 @@ const NavBar: React.FC = () => {
     { name: "Whoami", icon: <HomeIcon />, to: "whoami" },
     { name: "Skills", icon: <CodeIcon />, to: "skills" },
     { name: "Experiences", icon: <WorkHistoryIcon />, to: "experiences" },
-    //{ name: "Projects", icon: <BuildIcon />, to: "projects" },
     { name: "Contact", icon: <MailIcon />, to: "contact" },
   ];
 

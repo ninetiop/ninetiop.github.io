@@ -52,7 +52,7 @@ const experiences: Experience[] = [
   },
 ];
 
-// Fonction pour mettre en gras les technologies
+
 const highlightTechnologies = (text: string) => {
   const techs = ["Python", "FastAPI", "React", "Bash", "Linux", "PostgreSQL", "SQL", ".NET", "GitHub Actions", "Unittest", "Django", "TensorFlow", "Keras", "Numpy", "Pandas", "Matplotlib", "PHP", "JavaScript", "HTML5", "CSS"];
   let updatedText = text;
