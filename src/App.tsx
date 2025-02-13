@@ -32,7 +32,7 @@ function App() {
         </section>
       </div>
 
-      <ArrowScroll /> {/* Unique flèche dynamique */}
+      <ArrowScroll />
     </div>
   );
 }
