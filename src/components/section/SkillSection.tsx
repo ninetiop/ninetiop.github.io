@@ -18,6 +18,7 @@ import BashIcon from "../../assets/technology-icon/Bash.png";
 import AzureIcon from "../../assets/technology-icon/Azure.png";
 import CodeIcon from '@mui/icons-material/Code';
 import React from "react";
+import SkillsGrid from "./SkillsGrid";
 
 const SkillSection: React.FC = () => {
   const skillCategories = [
@@ -69,34 +70,7 @@ const SkillSection: React.FC = () => {
       <h1 className="font-mono text-3xl font-bold text-center mb-6 text-white">
         <CodeIcon /> Skills
       </h1>
-      {skillCategories.map((category, index) => (
-        <div key={index} className="mb-8">
-          <h2 className="font-mono text-2xl font-semibold text-white mb-6">{category.category}</h2>
-          <div
-            className={`grid gap-6 justify-center items-center ${category.gridColumns}`}
-          >
-            {category.skills.map((skill, skillIndex) => (
-              <Card
-                key={skillIndex}
-                className="border border-gray-600 rounded-lg bg-gray-900 p-4 flex flex-col items-center justify-center h-48"
-              >
-                <CardBody className="p-2 flex items-center justify-center flex-grow">
-                  <Image
-                    alt={skill.title}
-                    className="w-16 h-16 object-contain"
-                    radius="lg"
-                    shadow="sm"
-                    src={skill.img}
-                  />
-                </CardBody>
-                <CardFooter className="text-center flex justify-center mt-2">
-                  <b className="text-white font-mono text-xl">{skill.title}</b>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      ))}
+      <SkillsGrid />  
     </section>
   );
 };

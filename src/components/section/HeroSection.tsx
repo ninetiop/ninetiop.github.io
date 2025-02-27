@@ -14,29 +14,29 @@ const HeroSection: React.FC = () => {
   return (
     <section className="flex justify-center items-center min-h-[600px]">
       <div className="flex flex-col justify-center items-center w-full">
-      <Terminal width="50%" height="50%" className="mx-auto">
-        <div className="items-center">
-          <h1 className="font-mono text-sm sm:text-base font-bold text-left text-[#00FF80]">
-            <span className="text-[#00FF80]">root@terminal:</span>{" "}
-            <span className="text-[#3399FF]">~/portfolio$</span>{" "}
-            <ReactTyped
-              strings={["whoami"]}
-              typeSpeed={100}
-              backSpeed={30}
-              startDelay={1500}
-              showCursor={true}
-              className="text-white typing-effect"
-              onComplete={() => setCompleted(true)}
-            />
-          </h1>
-          {completed && (
-            <h1
-              className="font-mono font-semibold text-white mt-4 text-xxl sm:text-2xl md:text-2xl"
-              dangerouslySetInnerHTML={{ __html: heroText }}
-            />
-          )}
-        </div>
-      </Terminal>
+        <Terminal width="50%" height="50%" className="mx-auto">
+          <div className="items-center">
+            <h1 className="font-mono text-sm sm:text-base font-bold text-left text-[#00FF80]">
+              <span className="text-[#00FF80]">root@terminal:</span>{" "}
+              <span className="text-[#3399FF]">~/portfolio$</span>{" "}
+              <ReactTyped
+                strings={["whoami"]}
+                typeSpeed={100}
+                backSpeed={30}
+                startDelay={1500}
+                showCursor={true}
+                className="text-white typing-effect"
+                onComplete={() => setCompleted(true)}
+              />
+            </h1>
+            {completed && (
+              <h1
+                className="font-mono font-semibold text-white mt-4 text-sm sm:text-base md:text-lg"
+                dangerouslySetInnerHTML={{ __html: heroText }}
+              />
+            )}
+          </div>
+        </Terminal>
       </div>
     </section>
   );
