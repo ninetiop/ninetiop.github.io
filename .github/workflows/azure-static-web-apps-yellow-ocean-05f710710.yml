@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build, Apply Terraform & Deploy
     permissions:
-       id-token: write
-       contents: read
+      id-token: write
+      contents: read
     steps:
       # Checkout du code
       - uses: actions/checkout@v3
@@ -50,15 +50,17 @@ jobs:
         working-directory: tf
         
       # Importer la Resource Group si elle existe déjà
-      - name: Terraform Import Resource Group
+      - name: Terraform Import Resource Group if not already imported
         run: |
-          terraform import azurerm_resource_group.res-0 /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/portfolio || echo "Resource already managed"
+          terraform state list | grep "azurerm_resource_group.res-0" || terraform import azurerm_resource_group.res-0 /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/portfolio
         working-directory: tf
 
+      # Planifier la mise à jour des ressources
       - name: Terraform Plan
         run: terraform plan -input=false -var="github_token=${{ secrets.TOKEN_GH }}"
         working-directory: tf
 
+      # Appliquer la configuration Terraform
       - name: Terraform Apply
         run: terraform apply -input=false -auto-approve -var="github_token=${{ secrets.TOKEN_GH }}"
         working-directory: tf
