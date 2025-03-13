@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.venv
+
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform variables (si elles contiennent des informations sensibles)
+*.tfvars
+
+# Terraform provider credentials
+.terraform/
+*token
