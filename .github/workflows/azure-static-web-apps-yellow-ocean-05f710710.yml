@@ -49,14 +49,12 @@ jobs:
         run: terraform validate
         working-directory: tf
 
-      # Planifier la mise à jour des ressources
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false -var="github_token=${{ secrets.TOKEN_GH }}"
         working-directory: tf
 
-      # Appliquer la configuration Terraform
       - name: Terraform Apply
-        run: terraform apply -input=false -auto-approve
+        run: terraform apply -input=false -auto-approve -var="github_token=${{ secrets.TOKEN_GH }}"
         working-directory: tf
 
       # Installer les dépendances pour le déploiement de l'application
