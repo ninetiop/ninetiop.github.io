@@ -19,7 +19,8 @@ jobs:
       contents: read
     steps:
       # Checkout du code
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
@@ -64,14 +65,14 @@ jobs:
         run: npm install @actions/core@1.6.0 @actions/http-client
 
       # Obtenir le token d'identité GitHub pour le déploiement
-      - name: Get Id Token
+      - name: Get GitHub ID Token
         uses: actions/github-script@v6
         id: idtoken
         with:
-           script: |
-               const coredemo = require('@actions/core')
-               return await coredemo.getIDToken()
-           result-encoding: string
+          script: |
+            const core = require('@actions/core');
+            return await core.getIDToken();
+          result-encoding: string
 
       # Déployer l'application sur Azure Static Web App
       - name: Build And Deploy
@@ -80,9 +81,9 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           action: "upload"
-          app_location: "/" # Chemin vers le code source de l'application React
-          api_location: "" # Chemin vers l'API si tu en as une
-          output_location: "dist" # Répertoire où la version construite de l'application se trouve
+          app_location: "/"  # Chemin vers le code source de l'application React
+          api_location: ""   # Chemin vers l'API si tu en as une
+          output_location: "dist"  # Répertoire où la version construite de l'application se trouve
           github_id_token: ${{ steps.idtoken.outputs.result }}
 
   close_pull_request_job:
