@@ -13,7 +13,7 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build, Apply Terraform & Deploy
+    name: Build & Deploy
     permissions:
       id-token: write
       contents: read
@@ -24,11 +24,11 @@ jobs:
           submodules: true
           lfs: false
 
-      # Installer Terraform
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: '1.5.0'
+      # Installer Terraform (si nécessaire pour la configuration future)
+      # - name: Set up Terraform
+      #   uses: hashicorp/setup-terraform@v2
+      #   with:
+      #     terraform_version: '1.5.0'
 
       # Configurer l'authentification Azure
       - name: Configure Azure Credentials
@@ -44,26 +44,26 @@ jobs:
         run: |
           az group show --name portfolio || echo "Resource group does not exist, nothing to delete"
           az group delete --name portfolio --yes --no-wait || echo "Failed to delete resource group (maybe it doesn't exist)"
-        
-      # Initialiser Terraform dans le répertoire tf/
-      - name: Terraform Init
-        run: terraform init -input=false
-        working-directory: tf
 
-      # Valider la configuration Terraform
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: tf
+      # Initialiser Terraform (commenté car on ne va pas l'utiliser pour l'instant)
+      # - name: Terraform Init
+      #   run: terraform init -input=false
+      #   working-directory: tf
 
-      # Planifier la mise à jour des ressources
-      - name: Terraform Plan
-        run: terraform plan -input=false -var="github_token=${{ secrets.TOKEN_GH }}"
-        working-directory: tf
+      # Valider la configuration Terraform (commenté pour la même raison)
+      # - name: Terraform Validate
+      #   run: terraform validate
+      #   working-directory: tf
 
-      # Appliquer la configuration Terraform
-      - name: Terraform Apply
-        run: terraform apply -input=false -auto-approve -var="github_token=${{ secrets.TOKEN_GH }}"
-        working-directory: tf
+      # Planifier la mise à jour des ressources (commenté)
+      # - name: Terraform Plan
+      #   run: terraform plan -input=false -var="github_token=${{ secrets.TOKEN_GH }}"
+      #   working-directory: tf
+
+      # Appliquer la configuration Terraform (commenté)
+      # - name: Terraform Apply
+      #   run: terraform apply -input=false -auto-approve -var="github_token=${{ secrets.TOKEN_GH }}"
+      #   working-directory: tf
 
       # Installer les dépendances pour le déploiement de l'application
       - name: Install OIDC Client from Core Package
