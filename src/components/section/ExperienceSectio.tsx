@@ -16,54 +16,66 @@ const experiences: Experience[] = [
     title: "Software Engineer",
     company: "Prysmian Group (formerly Omnisens)",
     duration: "May 2022 - July 2024, Morges, Switzerland",
-    description: "Prysmian Group is a global leader in the energy and telecom cables and systems industry, specializing in advanced fiber-optic monitoring solutions for industrial and infrastructure applications",
+    description: "Prysmian Group is a global leader in the energy and telecom cables and systems industry, specializing in advanced fiber-optic monitoring solutions for industrial and infrastructure applications.",
     responsibilities: [
-      "Developed and maintained microservices for an embedded fiber-optic cable monitoring platform, improving data precision and optimizing workflows (Python FastAPI, Numpy)",
-      "Implemented NIC teaming in the frontend and automated system setup in the backend to boost network performance, fault tolerance, and high availability (React, Bash  Linux)",
-      "Administered schema updates and data migration scripts for a relational database, ensuring smooth transitions across software releases (PostgreSQL, SQL)",
-      "Developed and enhanced a Windows solution for remotely configuring sensor/measurement sets, enabling seamless configuration management in the embedded fiber-optic monitoring system (.NET)",
-      "Enhanced CI/CD processes for production environments with integration testing, system image builds, and Debian package creation, improving deployment resilience (GitHub Actions, Unittest)",
-      "Performed maintenance and debugging for embedded systems, assisting customers with issue resolution and ensuring system reliability",
-    ],
+      "Python, Bash Linux, JavaScript: Integrated network interface aggregation in the monitoring system to enable load balancing across network interfaces, boosting network performance, fault tolerance, and high availability.",
+      "Python FastAPI, Numpy: Designed and implemented software modules for an embedded system monitoring infrastructure using fiber-optic cables, enhancing data accuracy and optimizing workflows.",
+      "PostgreSQL, SQL: Administered schema updates and data migration scripts for a relational database, ensuring smooth transitions across software releases.",
+      "GitHub Actions, Unittest: Enhanced CI/CD processes for production environments with integration testing, system image builds, and Debian package creation, improving deployment resilience.",
+      "L2/L3 Support: Assisted customers with configuration issues on embedded systems, provided software support to field engineers, and helped production teams with embedded Linux software installation.",
+      "Delphi: Designed and developed a Windows GUI solution for remotely configuring sensor/measurement sets, enabling seamless configuration management within the embedded fiber-optic monitoring system.",
+      
+    ]
   },
   {
     id: 2,
-    title: "AI Engineer",
+    title: "Internship AI Engineer",
     company: "ST37",
     duration: "April 2021 - October 2021, Pau, France",
-    description: "ST37 is a company specializing in AI-based solutions for the sports industry, offering real-time video motion analysis for performance tracking and improvement",
+    description: "ST37 is a company specializing in AI-based solutions for the sports industry, offering real-time video motion analysis for performance tracking and improvement.",
     responsibilities: [
-      "Designed and implemented a microservices architecture to deliver AI-powered real-time video motion analysis for the soccer industry (Django)",
-      "Trained CNN model for player identification on images in real-time video streams (TensorFlow, Keras)",
-      "Developed a data processing workflow to collect and analyze performance metrics, visualizing player performance through spatial analysis and graphical plots (Numpy, Pandas, Matplotlib)",
-    ],
+      "Python, Django, FastAPI: Developed a microservices architecture for real-time AI video analysis, generating reports and statistics for users within football clubs",
+      "Microsoft Azure: Contributed to the deployment of solutions in the cloud environment, ensuring scalability and performance of the AI-driven video analysis platform",
+      "C++, Bash Linux: Integrated AI player tracking algorithms into robotic camera systems under Linux, generating real-time data for further processing"
+    ]
   },
   {
     id: 3,
-    title: "Full Stack Developer",
+    title: "Internship Full Stack Developer",
     company: "Glabs",
-    duration: "April 2018 - August 2018, Brignais, France",
-    description: "Glabs is a digital marketing agency that specializes in web development and e-commerce solutions",
+    duration: "May 2018 - August 2018, Brignais, France",
+    description: "Glabs is a digital marketing agency that specializes in web development and e-commerce solutions.",
     responsibilities: [
-      "Implemented a secure online payment system for an e-commerce platform, including product management inventory and sales processes (PHP)",
-      "Administered relational databases for storing and managing e-commerce product information, ensuring data integrity and efficient retrieval for product listings (PostgreSQL/SQL)",
-      "Developed tailored web applications to enhance the visibility and business presence of regional stakeholders (JavaScript, HTML5, CSS)",
-    ],
-  },
+      "PHP: Developed automation applications for online quote generation, optimizing product management and sales processes for various businesses.",
+      "PostgreSQL, SQL: Administered relational databases for storing and managing e-commerce product information, ensuring data integrity and efficient retrieval for product listings.",
+      "JavaScript, HTML5, TailwindCSS: Developed tailored web applications to enhance the visibility and business presence of regional stakeholders."
+    ]
+  }
 ];
 
-
 const highlightTechnologies = (text: string) => {
-  const techs = ["Python", "FastAPI", "React", "Bash", "Linux", "PostgreSQL", "SQL", ".NET", "GitHub Actions", "Unittest", "Django", "TensorFlow", "Keras", "Numpy", "Pandas", "Matplotlib", "PHP", "JavaScript", "HTML5", "CSS"];
+  const techs = [
+    "Python", "L2/L3 Support", "FastAPI", "React", "C++", "Bash Linux", "PostgreSQL", "SQL", 
+    "Delphi", "GitHub Actions", "Unittest", "Django", "Microsoft Azure", "Numpy", "Pandas", 
+    "Matplotlib", "PHP", "JavaScript", "HTML5", "TailwindCSS"
+  ];
+  
+  // Function to escape special characters in the technology names for regex
+  const escapeRegExp = (str: string) => {
+    return str.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, '\\$&'); // Escape special characters
+  };
+
   let updatedText = text;
   
   techs.forEach((tech) => {
-    const regex = new RegExp(`(${tech})`, "g");
-    updatedText = updatedText.replace(regex, "<strong>$1</strong>");
+    const escapedTech = escapeRegExp(tech); // Escape the technology name
+    const regex = new RegExp(`(${escapedTech})`, "g"); // Create a global regex
+    updatedText = updatedText.replace(regex, "<strong>$1</strong>"); // Replace the match with highlighted text
   });
 
   return updatedText;
 };
+
 
 const ExperienceList: React.FC = () => {
   return (
